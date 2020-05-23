@@ -50,30 +50,41 @@ class LinkedList(object):
         if currentNode == None:
             return None
         currentNode = self.head
-        while currentNode.next is not None :
-            if currentNode == data:
+        while currentNode is not None:
+            if currentNode.data == data:
                 return currentNode
             currentNode = currentNode.next
         return None
         
 
     def delete(self, data):
-        currentNode = self.head
-        nextNode = currentNode.next
         if data == None:
-            return None
-        if currentNode.next == None:
-            return None
-        while nextNode is not data:
-            if nextNode == data:
-                currentNode.next
-            currentNode.next
-            
+            return
+        if self.head == None:
+            return
+        currentNode = self.head.next
+        prevNode = self.head
+        if currentNode == None:
+            prevNode.next = None
+            return 
+        while currentNode.next is not None:
+            if currentNode.data == data:
+                prevNode.next = currentNode.next
+                return 
+            prevNode = currentNode
+            currentNode = currentNode.next
+        return None
 
 
     def print_list(self):
-        pass
-        # TODO: Implement me
+        currentNode = self.head
+        while currentNode is not None:
+            if currentNode.next == None:
+                print("{}".format(currentNode.data), end="")
+            else:
+                print("{} => ".format(currentNode.data), end="")
+            currentNode = currentNode.next
+
 
     def get_all_data(self):
         res = []
@@ -107,6 +118,6 @@ b.append(None)
 print(b.get_all_data())
 print(len(b))
 
-print(b.find(10))
+b.print_list()
 
 
